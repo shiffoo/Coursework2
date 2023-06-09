@@ -1,0 +1,15 @@
+<th:block th:fragment="navlinks(activeLink)">
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item " th:classappend="${activeLink} == 'home' ? 'active':''">
+                <a class="nav-link" th:href="@{/}">Главная</a>
+            </li>
+            <li class="nav-item" th:classappend="${activeLink} == 'appointments' ? 'active':''">
+                <a class="nav-link" th:href="@{/appointments/all}">Записи</a>
+            </li>
+            <li class="nav-item" th:classappend="${activeLink} == 'account' ? 'active':''">
+                <a class="nav-link" th:href="@{'/customers/' + ${#authentication.principal.id}}">Мой аккаунт</a>
+            </li>
+        </ul>
+    </div>
+</th:block>

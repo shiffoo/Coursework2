@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'','Выбор услуги')}"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<body>
+<div class="row align-items-center justify-content-center d-block" style="margin-top: 50px">
+    <div class="row align-items-center justify-content-center" style="margin-top: 50px">
+        <div>
+            <table id="customers" class="table table-striped text-center">
+                <thead class="thead-dark">
+                <tr>
+                    <th> Название</th>
+                    <th> Продолжительность</th>
+                    <th> Цена</th>
+                    <th> Действие</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${works == null}">
+                    <td colspan="4"> Нет доступных работ</td>
+                </tr>
+                <tr th:each="work : ${works}">
+                    <td><span th:text="${work.name}"> название работы </span></td>
+                    <td><span th:text="${work.duration }"> 30 мин </span></td>
+                    <td><span th:text="${work.price}"> 3 </span></td>
+                    <td><a class="btn btn-primary"
+                           th:href="@{'/appointments/new/'+${providerId} +'/'+ ${work.id}}"
+                           role="button">Выбрать</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+</body>
+
+</html>

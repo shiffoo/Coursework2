@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'works','Доступные работы')}"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<body>
+<div class="row align-items-center justify-content-center" style="margin-top: 50px">
+    <div>
+        <table id="works" class="table text-center">
+            <thead class="thead-dark">
+            <tr>
+                <th> Название</th>
+                <th> Цель</th>
+                <th> Цена</th>
+                <th> Продолжительность</th>
+                <th> Поставщики</th>
+                <th> Действие</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${works == null}">
+                <td colspan="4"> Нет доступных работ</td>
+            </tr>
+            <tr th:each="work : ${works}"
+                th:classappend="${work.targetCustomer=='retail'} ? table-primary : table-info">
+                <td><span th:text="${work.name}"> английский </span></td>
+                <td><span th:text="${work.targetCustomer}"> розничная </span></td>
+                <td><span th:text="${work.price + ' '}"> 50  </span></td>
+                <td><span th:text="${work.duration+' мин'}"> 30 мин </span></td>
+                <td><span th:text="${work.providers.size()}"> 2 </span></td>
+                <td><a class="btn btn-secondary" th:href="@{'/works/' + ${work.id}}" role="button">Подробнее</a>
+                    <form class="d-inline-block" th:action="@{/works/delete}" method="POST">
+                        <input type="hidden" name="workId" th:value="${work.id}" />
+                        <button type="submit" name="submit" value="value" class="btn btn-danger">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row align-items-center justify-content-center" style="margin-top: 50px">
+    <a class="btn btn-primary" th:href="@{/works/new}" role="button">Новая работа</a>
+</div>
+</body>
+</html>
+
+
+

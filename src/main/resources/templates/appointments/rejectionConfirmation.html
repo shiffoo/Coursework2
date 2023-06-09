@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'appointments','Отказ от записи')}"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<body>
+
+<!-- Page Content -->
+<div class="row align-items-center justify-content-center" style="margin-top: 50px">
+    <div th:if="${type == 'request'}">
+        <div th:if="${result}">
+            <p>Вы успешно запросили отмену этой записи. </p>
+            <p>Если провайдер подтвердит это, счет не будет выставлен.</p>
+        </div>
+
+        <div th:if="${result==false}">
+            <p>Произошла ошибка!</p>
+            <p>Убедитесь, что эта запись еще не отклонена</p>
+        </div>
+
+    </div>
+
+    <div  th:if="${type == 'accept'}">
+        <div th:if="${result}">
+            <p>Статус записи успешно изменен на отклоненный </p>
+            <p>Счет не будет выставлен.</p>
+        </div>
+
+        <div th:if="${result==false}">
+            <p>Произошла ошибка!</p>
+            <p>Убедитесь, что эта запись еще не отклонена</p>
+        </div>
+
+    </div>
+
+    <div sec:authorize="!isAuthenticated()">
+        <p>Вы можете войти в систему <a th:href="@{/login}">здесь</a></p>
+    </div>
+</div>
+</div>
+
+</body>
+
+</html>

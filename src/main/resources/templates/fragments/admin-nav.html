@@ -1,0 +1,21 @@
+<th:block th:fragment="navlinks(activeLink)">
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" th:classappend="${activeLink} == 'home' ? 'active':''">
+                <a class="nav-link" th:href="@{/}">Главная</a>
+            </li>
+            <li class="nav-item" th:classappend="${activeLink} == 'appointments' ? 'active':''">
+                <a class="nav-link" th:href="@{/appointments/all}">Записи</a>
+            </li>
+            <li class="nav-item" th:classappend="${activeLink} == 'works' ? 'active':''">
+                <a class="nav-link" th:href="@{/works/all}">Услуги</a>
+            </li>
+            <li class="nav-item" th:classappend="${activeLink} == 'providers' ? 'active':''">
+                <a class="nav-link" th:href="@{/providers/all}">Мастера</a>
+            </li>
+            <li class="nav-item" th:classappend="${activeLink} == 'customers' ? 'active':''">
+                <a class="nav-link" th:href="@{/customers/all}">Клиенты</a>
+            </li>
+        </ul>
+    </div>
+</th:block>
